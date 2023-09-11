@@ -1,4 +1,5 @@
 import re
+import os
 import sys
 
 def extract_questions(text):
@@ -23,7 +24,8 @@ def main(input_filename, output_filename, bit_sequence):
     # if isinstance(bit_sequence, int):
     #     bit_sequence = format(bit_sequence, '03b')
 
-    with open(input_filename, 'r') as infile:
+    input_fl = os.path.join('texts', input_filename)
+    with open(input_fl, 'r') as infile:
         text = infile.read()
 
     print('bit_sequence', bit_sequence)
@@ -32,7 +34,8 @@ def main(input_filename, output_filename, bit_sequence):
         if bit == '1':
             results.update(parsers[i](text))
 
-    with open(output_filename, 'w') as outfile:
+    output_fl = os.path.join('parsed', bit_sequence + '_' + input_filename.split('.')[0] + '_' + output_filename)
+    with open(output_fl, 'w') as outfile:
         for result in results:
             outfile.write(result + '\n')
 
