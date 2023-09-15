@@ -8,14 +8,14 @@ def extract_questions(text):
 
 def extract_signifier_questions(text):
     """Extract sentences with question signifiers."""
-    signifiers = ['why', 'how', 'when']
+    signifiers = ['why', 'how', 'when', 'Why', 'How', 'When']
     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
     return [sentence.strip() for sentence in sentences if any(signifier in sentence.lower().split() for signifier in signifiers)]
 
 def extract_or_questions(text):
     """Extract sentences with 'or'."""
     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-    return [sentence.strip() for sentence in sentences if ' or ' in sentence]
+    return [sentence.strip() for sentence in sentences if (' or ' in sentence or ' OR ' in sentence)]
 
 def main(input_filename, output_filename, bit_sequence):
     parsers = [extract_questions, extract_signifier_questions, extract_or_questions]
