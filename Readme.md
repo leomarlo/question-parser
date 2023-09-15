@@ -29,7 +29,7 @@ python question_parser.py [input_filename] [output_filename] [bit_sequence]
 **Example**:
 
 ```
-python question_parser.py input.txt output.txt 110
+python qparser.py input.txt output.txt 110
 ```
 
 This will extract questions from `input.txt` using the first two parsers and save the results to `output.txt`.
